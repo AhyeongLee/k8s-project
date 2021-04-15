@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-api
+spec:
+  selector:
+    matchLabels:
+      app: test-app
+      tier: back
+  template:
+    metadata:
+      labels:
+        app: test-app
+        tier: back
+    spec:
+      containers:
+        - name: test-api
+          image: public.ecr.aws/p4g1u1f9/23724-k8s/api:10
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-api
+spec:
+  selector:
+    app: test-app
+    tier: back
+  ports:
+    - port: 8080
