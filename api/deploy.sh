@@ -7,6 +7,4 @@ else
     kill -9 ${PID}    
 fi
 cd /home/jenkins/deploy
-npm install
 node api.js > /dev/null 2> /dev/null < /dev/null &
-EOF
